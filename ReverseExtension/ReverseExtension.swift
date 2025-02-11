@@ -135,7 +135,7 @@ extension UITableViewCell {
                 _reachedBottom
             }
         }
-        public var scrollViewDidReachBottom: ((UIScrollView) -> ())?
+        @objc public var scrollViewDidReachBottom: ((UIScrollView) -> ())?
         
         // MARK: - reachedTop
         private lazy var _reachedTop = base
@@ -152,7 +152,7 @@ extension UITableViewCell {
                 return _reachedTop
             }
         }
-        public var scrollViewDidReachTop: ((UIScrollView) -> ())?
+        @objc public var scrollViewDidReachTop: ((UIScrollView) -> ())?
         
         private var lastScrollIndicatorInsets: UIEdgeInsets?
         private var lastContentInset: UIEdgeInsets?
