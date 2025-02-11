@@ -12,6 +12,8 @@ import UIKit
     private struct AssociatedKey {
         static var re: UInt8 = 0
         static var isReversed: UInt8 = 0
+        static var listNumberOfRowsInSection: UInt8 = 0
+        static var numberOfSectionsInTable: UInt8 = 0
     }
     
     private var isReversed: Bool {
@@ -24,6 +26,33 @@ import UIKit
                 return false
             }
             return isReversed
+        }
+    }
+    
+    @objc public var numberOfSectionsInTable: Int {
+        set {
+            objc_setAssociatedObject(self, &AssociatedKey.numberOfSectionsInTable, newValue, .OBJC_ASSOCIATION_ASSIGN)
+        }
+        get {
+            guard let numberOfSectionsInTable = objc_getAssociatedObject(self, &AssociatedKey.numberOfSectionsInTable) as? Int else {
+                objc_setAssociatedObject(self, &AssociatedKey.numberOfSectionsInTable, 0, .OBJC_ASSOCIATION_ASSIGN)
+                return 0
+            }
+            return numberOfSectionsInTable
+        }
+    }
+    
+    @objc public var listNumberOfRowsInSection: [Int] {
+        set {
+            objc_setAssociatedObject(self, &AssociatedKey.listNumberOfRowsInSection, newValue, .OBJC_ASSOCIATION_RETAIN)
+        }
+        get {
+            guard let values = objc_getAssociatedObject(self, &AssociatedKey.listNumberOfRowsInSection) as? [Int] else {
+                let values = [Int]()
+                objc_setAssociatedObject(self, &AssociatedKey.listNumberOfRowsInSection, values, .OBJC_ASSOCIATION_RETAIN)
+                return values
+            }
+            return values
         }
     }
     
@@ -240,14 +269,33 @@ extension UITableViewCell {
         
         // MARK: - Reverse method
         func reversedSection(with section: Int) -> Int {
-            return max(0, max(0, (nonNilBase.numberOfSections - 1)) - section)
+            if nonNilBase.numberOfSectionsInTable > 0 {
+                return max(0, max(0, (nonNilBase.numberOfSectionsInTable - 1)) - section)
+            }
+            else {
+                return max(0, max(0, (nonNilBase.numberOfSections - 1)) - section)
+            }
         }
         
         func reversedIndexPath(with indexPath: IndexPath, fromReversed reversed: Bool = false) -> IndexPath {
             let base = nonNilBase
-            let section = max(0, max(0, (base.numberOfSections - 1)) - indexPath.section)
-            let numberOfRowsInSection = base.numberOfRows(inSection: reversed ? section : indexPath.section)
-            let row = max(0, numberOfRowsInSection - 1 - indexPath.row)
+            let section: Int
+            let numberOfRows: Int
+            
+            if base.numberOfSectionsInTable > 0 {
+                section = max(0, max(0, (base.numberOfSectionsInTable - 1)) - indexPath.section)
+            }
+            else {
+                section = max(0, max(0, (base.numberOfSections - 1)) - indexPath.section)
+            }
+            
+            if base.listNumberOfRowsInSection.count > 0 {
+                numberOfRows = base.listNumberOfRowsInSection[reversed ? section : indexPath.section]
+            }
+            else {
+                numberOfRows = base.numberOfRows(inSection: reversed ? section : indexPath.section)
+            }
+            let row = max(0, numberOfRows - 1 - indexPath.row)
             return IndexPath(row: row, section: section)
         }
         

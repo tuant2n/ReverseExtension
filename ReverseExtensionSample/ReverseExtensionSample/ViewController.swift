@@ -39,9 +39,14 @@ class ViewController: UIViewController {
     }
 
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        messages.append(MessageModel())
+        messages.append(MessageModel(index: messages.count))
+        messages.append(MessageModel(index: messages.count))
+        
+        tableView.listNumberOfRowsInSection = [messages.count]
+        
         tableView.beginUpdates()
-        tableView.re.insertRows(at: [IndexPath(row: messages.count - 1, section: 0)], with: .automatic)
+        tableView.re.insertRows(at: [IndexPath(row: messages.count - 1, section: 0),
+                                     IndexPath(row: messages.count - 2, section: 0)], with: .automatic)
         tableView.endUpdates()
     }
     

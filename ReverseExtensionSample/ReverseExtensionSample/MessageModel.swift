@@ -12,12 +12,16 @@ struct MessageModel {
     private struct Const {
         static let imageNames: [String] = ["marty1", "marty2", "doc1", "doc2"]
         static let messags: [String] = [
-            "You've gotta come back with me!",
-            "Where?",
-            "Back to the future!",
-            "Great scott!",
-            "If you put your mind to it, you can accomplish anything.",
-            "I need a nuclear reaction to generate the 1.21 gigawatts of electricity I need."
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
         ]
         static let formatter: DateFormatter = {
             let formatter = DateFormatter()
@@ -30,9 +34,9 @@ struct MessageModel {
     let message: String
     let time: String
     
-    init() {
+    init(index: Int) {
         imageName = Const.imageNames[Int(arc4random_uniform(UInt32(Const.imageNames.count)))]
-        message = Const.messags[Int(arc4random_uniform(UInt32(Const.messags.count)))]
+        message = Const.messags[index]
         time = Const.formatter.string(from: Date())
     }
 }
