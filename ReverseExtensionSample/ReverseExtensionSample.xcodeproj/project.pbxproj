@@ -141,7 +141,6 @@
 				TargetAttributes = {
 					9D17DB4F1E669E2200282636 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 8X2UF2GG54;
 						LastSwiftMigration = 1620;
 						ProvisioningStyle = Automatic;
 					};
@@ -354,7 +353,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 8X2UF2GG54;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ReverseExtensionSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -373,7 +372,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 8X2UF2GG54;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ReverseExtensionSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
