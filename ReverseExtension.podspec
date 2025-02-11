@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   last_tag = `git describe --tags #{last_commit}`.strip
 
   s.name             = 'ReverseExtension'
-  s.version          = last_tag
+  s.version          = '1.0'
   s.summary          = 'UITableView extension that enabled to insert cell from bottom of tableView.'
   s.homepage         = 'https://github.com/marty-suzuki/ReverseExtension'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -21,5 +21,4 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '10.0'
   s.source_files = 'ReverseExtension/*.{swift,h,m}'
   s.swift_version = '5.0'
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
 end
