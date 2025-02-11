@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UITableView {
+@objc extension UITableView {
     private struct AssociatedKey {
         static var re: UInt8 = 0
         static var isReversed: UInt8 = 0
@@ -68,8 +68,8 @@ extension UITableViewCell {
     }
 }
 
-extension UITableView {
-    public final class ReverseExtension: NSObject {
+@objc extension UITableView {
+    @objc public final class ReverseExtension: NSObject {
         private(set) weak var base: UITableView?
         fileprivate var nonNilBase: UITableView {
             base ?? { fatalError("base is nil") }()
@@ -81,7 +81,7 @@ extension UITableView {
                 base?.delegate = delegateProxy
             }
         }
-        public weak var delegate: UITableViewDelegate? {
+        @objc public weak var delegate: UITableViewDelegate? {
             didSet {
                 guard let delegate = delegate else {
                     delegateProxy = nil
@@ -115,7 +115,7 @@ extension UITableView {
                 )
             }
         }
-        public weak var dataSource: UITableViewDataSource? {
+        @objc public weak var dataSource: UITableViewDataSource? {
             didSet {
                 base?.dataSource = self
             }
