@@ -21,4 +21,5 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '10.0'
   s.source_files = 'ReverseExtension/*.{swift,h,m}'
   s.swift_version = '5.0'
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
 end
