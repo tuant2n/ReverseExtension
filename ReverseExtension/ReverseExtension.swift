@@ -290,7 +290,8 @@ extension UITableViewCell {
             }
             
             if base.listNumberOfRowsInSection.count > 0 {
-                numberOfRows = base.listNumberOfRowsInSection.reversed()[reversed ? section : indexPath.section]
+                let listNumberOfRowsInSection = Array(base.listNumberOfRowsInSection.reversed())
+                numberOfRows = listNumberOfRowsInSection[reversed ? section : indexPath.section]
             }
             else {
                 numberOfRows = base.numberOfRows(inSection: reversed ? section : indexPath.section)
