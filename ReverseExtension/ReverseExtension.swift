@@ -268,7 +268,7 @@ extension UITableViewCell {
         }
         
         // MARK: - Reverse method
-        @objc func reversedSection(with section: Int) -> Int {
+        @objc public func reversedSection(with section: Int) -> Int {
             if nonNilBase.numberOfSectionsInTable > 0 {
                 return max(0, max(0, (nonNilBase.numberOfSectionsInTable - 1)) - section)
             }
@@ -277,7 +277,7 @@ extension UITableViewCell {
             }
         }
         
-        @objc func reversedIndexPath(with indexPath: IndexPath, fromReversed reversed: Bool = false) -> IndexPath {
+        @objc public func reversedIndexPath(with indexPath: IndexPath, fromReversed reversed: Bool = false) -> IndexPath {
             let base = nonNilBase
             let section: Int
             let numberOfRows: Int
